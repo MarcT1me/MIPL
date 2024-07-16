@@ -1,0 +1,11 @@
+int getCode(int s, int i, int j)
+{
+    return s - (i + j);
+};
+
+
+void main()
+{
+    int code = getCode(2, 1, 1);
+    println(code);
+};
