@@ -1,4 +1,9 @@
-int getCode(int s, int i, int j)
+debug {
+    inr variable = 5;
+};
+
+
+void getCode(int s, int i, int j)
 {
     return s - (i + j);
 };

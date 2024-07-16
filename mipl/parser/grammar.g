@@ -1,6 +1,4 @@
-start: (void_function | ret_function | var)*
-
-SEMICOLON: ";"
+start: (void_function | ret_function | variable_declaration | call_function | named_codeblock | codeblock)*
 
 // отсутсвие данных
 VOID: "void"
@@ -43,23 +41,39 @@ MULTIPLE: "*"
 DIVISION: "/"
 MINUS: "-"
 ARITHMETIC_SIGNS: PLUS | MINUS | MULTIPLE | DIVISION
-ARITHMETIC_BRACE: /"(" _value (ARITHMETIC_SIGNS _value)+ ")"/
+
+// кеворды и символы
+SEMICOLON: ";"
 EQUAL: "=="
+ASSIGNED: "="
+NOT_EQUAL: "!="
+NOT: "!"
+IF: "if"
+ELSE: "else"
 
 // создания переменных
 ID: /[a-zA-Z_][a-zA-Z0-9_]*/
 
 // переменные
 _value: ID | NUMBER_DECLARATION | CHAR_DECLARATION | VECTOR_DECLARATION
-value: _value (ARITHMETIC_SIGNS ARITHMETIC_BRACE | _value)*
+value: _value (ARITHMETIC_SIGNS _value)*
 var: VAR_TYPE ID | VAR_TYPE ID "=" value
+variable_declaration: VAR_TYPE ID SEMICOLON | VAR_TYPE ID ASSIGNED value SEMICOLON
+
+// блоки кода
+code_body: /[^{}]+/
+codeblock: "{" code_body "}"
+named_codeblock: ID codeblock SEMICOLON
 
 // функции
-func_args: var? | var ("," var)*
-func_body: /[^{}]+/
-ret_function: VAR_TYPE ID "(" func_args ")" "{" func_body "}" SEMICOLON
-void_function: VOID ID "(" func_args ")" "{" func_body "}" SEMICOLON
+func_args: var? ("," var)*
+ret_function: VAR_TYPE ID "(" func_args ")" codeblock SEMICOLON
+void_function: VOID ID "(" func_args ")" codeblock SEMICOLON
 
+func_call_args: value? | value ("," value)*
+call_function: ID "(" func_call_args ")" SEMICOLON
+
+// игнорируемые символы
 %import common.WS
 %ignore WS
 

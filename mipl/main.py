@@ -1,4 +1,4 @@
-from miplinterpreter import *
+from interpreter import *
 
 
 def main():
