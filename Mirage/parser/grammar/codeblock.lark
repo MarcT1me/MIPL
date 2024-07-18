@@ -1,0 +1,11 @@
+%import specials.lark.QMARK_CODEBLOCK_OPEN
+%import specials.lark.QMARK_DEFINE
+%import specials.lark.QMARK_DEFEND
+%import specials.lark.QMARK_MIPARG
+%import values.lark.value
+
+codeblock_body: ~"}"*
+codeblock: "{" codeblock_body "}"
+named_codeblock: ID codeblock
+
+qmarc_codeblock: QMARK_CODEBLOCK_OPEN codeblock_body QMARK_DEFEND

@@ -1,0 +1,59 @@
+// не учавствующие в переменных
+TYPE_VOID: "void"  // функции
+TYPE_NULL: "null"  // отсутсвие ссылки / ретурна / 0
+TYPE_NONE: "None"  // отсутсвие данных
+// автоматические
+TYPE_AUTO: "auto"
+TYPE_NUMERIC: "numeric"
+TYPE_VAR: "var"
+
+// целые числа
+TYPE_UINT8: "uint8"
+TYPE_UINT32: "uint32"
+TYPE_UINT: "uint" | TYPE_UINT8 | TYPE_UINT32
+
+TYPE_INT8: "int8"
+TYPE_INT32: "int32"
+TYPE_INT: "int" | TYPE_INT8 | TYPE_INT32
+
+TYPE_LONG: "long"  // 64 bits
+
+TYPE_INTEGER: TYPE_INT | TYPE_UINT | TYPE_LONG
+
+// плавающие запятые
+TYPE_FLOAT16: "float16"
+TYPE_FLOAT32: "float32"
+TYPE_FLOAT: "float"  | TYPE_FLOAT16 | TYPE_FLOAT32
+
+TYPE_DOUBLE: "double"  // 64 bits
+
+TYPE_FLOATING: TYPE_FLOAT | TYPE_DOUBLE
+
+// единственный возможный тип символов
+TYPE_CHAR: "char"  // ASCII code - 8 bits
+
+// векторы
+TYPE_FVEC2: "vec2"
+TYPE_FVEC3: "vec3"
+TYPE_FVEC4: "vec4"
+TYPE_FVEC: TYPE_FVEC2 | TYPE_FVEC3 | TYPE_FVEC4
+
+TYPE_IVEC2: "ivec2"
+TYPE_IVEC3: "ivec3"
+TYPE_IVEC4: "ivec4"
+TYPE_IVEC: TYPE_IVEC2 | TYPE_IVEC3 | TYPE_IVEC4
+
+TYPE_UVEC2: "uvec2"
+TYPE_UVEC3: "uvec3"
+TYPE_UVEC4: "uvec4"
+TYPE_UVEC: TYPE_UVEC2 | TYPE_UVEC3 | TYPE_UVEC4
+
+TYPE_BVEC2: "bvec2"
+TYPE_BVEC3: "bvec3"
+TYPE_BVEC4: "bvec4"
+TYPE_BVEC: TYPE_BVEC2 | TYPE_BVEC3 | TYPE_BVEC4
+
+TYPE_VEC: "vec" | TYPE_FVEC | TYPE_IVEC | TYPE_UVEC | TYPE_BVEC
+
+// глобальные типы данных
+GENERAL_TYPE: TYPE_VEC | TYPE_CHAR | TYPE_INTEGER | TYPE_FLOATING | ID

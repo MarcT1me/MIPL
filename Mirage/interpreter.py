@@ -1,9 +1,8 @@
 import pathlib
 import sys
-from mipl.parser.parser import parser
+from Mirage.parser import  parser
 from dataclasses import dataclass
-from mipl.code.block import CodeBlock
-from pprint import pprint
+from Mirage.code.block import CodeBlock
 
 
 class MIPLInterpreter:
@@ -19,6 +18,7 @@ class MIPLInterpreter:
         functions = {}
 
     globals = Globals()
+    locals: list[Locals] = []
 
     args = sys.argv[2:]
     file_name: str | pathlib.Path
@@ -26,6 +26,7 @@ class MIPLInterpreter:
 
     def __new__(cls, file_path: str | pathlib.Path):
         cls.file_name = file_path
+        parser.parse_grammar()
         return cls
 
     @classmethod
@@ -34,7 +35,7 @@ class MIPLInterpreter:
         with open(cls.file_name, 'r') as f:
             data = f.read()
         code_block = CodeBlock()
-        cls.token_tree = parser.parse(data)
+        cls.token_tree = parser.parser.parse(data)
         result = code_block.__o_construct__(cls.token_tree)
         print('result =', result)
 

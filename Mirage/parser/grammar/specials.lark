@@ -1,0 +1,12 @@
+%import types.lark.GENERAL_TYPE
+%import values.lark.value
+
+QMARK_IF: "#if"
+QMARK_DEBUG: "#debug"
+QMARK_CODEBLOCK_OPEN: QMARK_IF | QMARK_DEBUG
+QMARK_DEFEND: "#defend"
+QMARK_DEFINE: "#define"
+QMARK_MIPARG: "#miparg"
+
+define_var: QMARK_DEFINE ID value
+cast: "<" "cast" GENERAL_TYPE ">" "(" value ")"

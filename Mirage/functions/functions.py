@@ -1,4 +1,4 @@
-from mipl.object import MIPLObject
+from Mirage.object import MIPLObject
 from lark import Transformer, v_args, Token, Tree
 
 

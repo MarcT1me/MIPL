@@ -1,0 +1,35 @@
+// арифемтикой и значениями
+%import base.lark.ID
+%import base.lark.NUMBER
+%import base.lark.CHAR
+%import base.lark.LEFT_PARENT
+%import base.lark.RIGHT_PARENT
+%import base.lark.POWER_OPERATOR
+%import base.lark.MULTIPLYING_OPERATOR
+%import base.lark.ARITHMETIC_SIGNS
+%import base.lark.ASSIGNED
+// типизация
+%import types.lark.GENERAL_TYPE
+%import types.lark.TYPE_NULL
+%import types.lark.TYPE_NUMERIC
+%import types.lark.TYPE_VAR
+%import types.lark.TYPE_AUTO
+%import types.lark.TYPE_NONE
+
+//арифметика
+arithmetic_expression: arithmetic_term (ARITHMETIC_SIGNS arithmetic_term)*
+arithmetic_term: arithmetic_factor (MULTIPLYING_OPERATOR arithmetic_factor)*
+arithmetic_factor: arithmetic_primary (POWER_OPERATOR arithmetic_primary)*
+arithmetic_primary: ID | NUMBER | CHAR | LEFT_PARENT arithmetic_expression RIGHT_PARENT
+
+value: arithmetic_expression
+
+VAR_AUTODETECT_TYPE: TYPE_AUTO | TYPE_NUMERIC
+VAR_EMPTYDATA_TYPE: TYPE_NONE | TYPE_NULL
+
+variable_create_general_declaration: (GENERAL_TYPE | VAR_AUTODETECT_TYPE) ID | GENERAL_TYPE ID ASSIGNED value
+variable_create_custom_declaration: ID ID | ID ID ASSIGNED value
+variable_create_declaration: variable_create_general_declaration | variable_create_custom_declaration
+variable_assigned_declaration: ID ASSIGNED value
+
+variable_declaration: variable_create_declaration | variable_assigned_declaration

@@ -1,5 +1,5 @@
-from mipl.object import MIPLObject
-from mipl.parser.parser import GrammarTransformerMain, v_args, Token
+from Mirage.object import MIPLObject
+from Mirage.parser.parser import GrammarTransformerMain, v_args, Token
 
 
 class CodeBlock(MIPLObject):

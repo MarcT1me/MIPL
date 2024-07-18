@@ -1,0 +1,63 @@
+// для старта
+?start: statement*
+
+%import values.lark.variable_declaration
+%import codeblock.lark.codeblock_body
+%import codeblock.lark.codeblock
+%import codeblock.lark.named_codeblock
+
+statement: variable_declaration
+           | named_codeblock | codeblock | codeblock_body
+           | define_var | qmarc_codeblock | cast
+
+// переменные и их знначения
+ID: /[_a-zA-Z][_a-zA-Z0-9]*/
+NUMBER: /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/
+CHAR: /[\x20-\x7E]/
+
+// неделимые операторы - присваивания
+ASSIGNED: "="
+
+ADDING_OPERATOR: ADDING | REDUCTION
+ADDING: "+="
+REDUCTION: "-="
+
+MULTIPLIER_OPERATION: MULTIPLIER | DIVISION
+MULTIPLIER: "*="
+DIVISION: "/="
+
+// неделимые сравнение
+EQUAL: "=="
+NOT_EQUAL: "!="
+EQUAL_STATEMENT: EQUAL | NOT_EQUAL
+NOT: "!"
+LESS: "<"
+GREATER: ">"
+HARD_STATEMET_SIGNES: LESS | GREATER
+LESS_EQUAL: "<="
+GREATE_EQUAL: ">="
+LIGHT_STATEMET_SIGNES: LESS_EQUAL | GREATE_EQUAL
+STATEMET_SIGNES: HARD_STATEMET_SIGNES | LIGHT_STATEMET_SIGNES
+
+// арифметика
+ARITHMETIC_SIGNS: PLUS | MINUS
+PLUS: "+"
+MINUS: "-"
+
+MULTIPLYING_OPERATOR: TIMES | DIVIDE
+TIMES: "*"
+DIVIDE: "/"
+
+POWER_OPERATOR: CARET
+CARET: "^"
+
+LEFT_PARENT: "("
+RIGHT_PARENT: ")"
+
+// игнорируемые символы
+%import common.WS
+%ignore WS
+
+// комментарии
+%ignore /\/\/.*/
+%ignore /\/\*[\s\S]*?\*\//

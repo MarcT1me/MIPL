@@ -16,5 +16,5 @@ build
 *.rar
 
 # other project files
-test.*
+*__test__*.*
 screenshots

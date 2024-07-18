@@ -1,0 +1,15 @@
+int a = 1
+uint b = 1
+float c = 3.0
+
+#define HUI 512
+
+some_codeblock {
+    int variable
+    {
+        int variable2
+    }
+}
+
+int d = (a - 7.0e-10) * (10 - 3 / (3 - c)) + some_codeblock->variable.some
+d = <cast uint>('d)

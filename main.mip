@@ -1,0 +1,16 @@
+debug {
+    int variable = 5;
+};
+
+
+int getCode(int s, int i, int j)
+{
+    return s - (i + j) * getCode(2, 1, 1);
+};
+
+
+void main()
+{
+    int code = getCode(2, 1, 1);
+    println(code);
+};

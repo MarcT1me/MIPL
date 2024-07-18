@@ -3,7 +3,7 @@ from interpreter import *
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: mipl\\main.py <filename> [-ri]")
+        print("Usage: Mirage\\main.py <filename> [-ri]")
         return
 
     filename = sys.argv[1]
